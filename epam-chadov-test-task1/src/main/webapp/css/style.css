@@ -1,0 +1,44 @@
+.header {
+    box-sizing: border-box;
+    border-bottom: 2px solid black;
+    min-height: 70px;
+}
+
+.logo {
+    float: left;
+    padding: 20px 20px;
+}
+
+.wrapper {
+    padding: 0;
+    margin: 0 auto;
+    width: 900px;
+    border: 1px solid black;
+}
+
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.content {
+    float: right;
+    width: 80%;
+    border: 2px solid black;
+    margin: 5px;
+    min-height: 600px;
+}
+
+.sidebar {
+    float: left;
+    width: 15%;
+}
+
+.footer {
+    position: relative;
+    clear: both;
+    text-align: center;
+    border-top: 2px solid black;
+    font-size: 12px;
+}
