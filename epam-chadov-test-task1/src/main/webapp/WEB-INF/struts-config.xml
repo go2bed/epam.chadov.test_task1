@@ -10,16 +10,27 @@
     </form-beans>
     <action-mappings>
         <action path="/newsAction"
-                type="com.epam.chadov.task1.presentation.action.NewsAction"
+                type="com.epam.chadov.task1.presentation.actions.NewsAction"
                 parameter="action"
         >
             <forward name="success" path="/pages/showNews.jsp"/>
         </action>
+
+        <action path="/Locale"
+                type="com.epam.chadov.task1.presentation.actions.SetLocale"
+                parameter="action"
+        >
+            <forward name="success" path="/index.jsp"/>
+        </action>
     </action-mappings>
+
+    <message-resources parameter="messages"/>
 
     <plug-in className="org.apache.struts.tiles.TilesPlugin">
         <set-property property="definitions-config"
                       value="/WEB-INF/tiles-defs.xml"/>
 
     </plug-in>
+
+
 </struts-config>

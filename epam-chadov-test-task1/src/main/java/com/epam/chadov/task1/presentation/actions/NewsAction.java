@@ -1,4 +1,4 @@
-package com.epam.chadov.task1.presentation.action;
+package com.epam.chadov.task1.presentation.actions;
 
 import com.epam.chadov.task1.presentation.form.ShowNewsForm;
 import org.apache.struts.action.ActionForm;

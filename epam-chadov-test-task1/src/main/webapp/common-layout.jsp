@@ -7,24 +7,21 @@
     <title>News Management</title>
 </head>
 <body>
-<div class="wrapper" >
-<div class="header">
-    <tiles:insert attribute="header"/>
+<div class="wrapper">
+    <div class="header">
+        <tiles:insert attribute="header"/>
+    </div>
+    <div class="sidebar">
+        <tiles:insert attribute="sidebar"/>
+    </div>
+    <div class="content">
+        <div class="path">
+            <tiles:insert attribute="content"/>
+        </div>
+    </div>
+    <div class="footer">
+        <tiles:insert attribute="footer"/>
+    </div>
 </div>
-
-<div class="sidebar">
-    <tiles:insert attribute="sidebar"/>
-</div>
-
-<div class="content">
-    <tiles:insert attribute="content"/>
-</div>
-
-
-<div class="footer">
-    <tiles:insert attribute="footer"/>
-</div>
-</div>
-
 </body>
 </html>

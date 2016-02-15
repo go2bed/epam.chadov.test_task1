@@ -4,7 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 
 <body>
-<bean:write name="display"/>
+<%--<bean:write name="display"/>--%>
 <html:link action="/newsAction.do?action=editNews">
     Edit News
 </html:link><br/>
