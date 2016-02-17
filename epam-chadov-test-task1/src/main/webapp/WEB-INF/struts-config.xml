@@ -8,6 +8,7 @@
     <form-beans>
         <form-bean name="showNewsForm" type="com.epam.chadov.task1.presentation.form.ShowNewsForm"/>
     </form-beans>
+
     <action-mappings>
         <action path="/newsAction"
                 type="com.epam.chadov.task1.presentation.actions.NewsAction"
@@ -15,6 +16,8 @@
         >
             <forward name="success" path="/pages/showNews.jsp"/>
         </action>
+
+
 
         <action path="/Locale"
                 type="com.epam.chadov.task1.presentation.actions.SetLocale"

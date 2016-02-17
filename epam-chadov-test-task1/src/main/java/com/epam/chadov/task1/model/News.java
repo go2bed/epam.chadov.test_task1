@@ -10,6 +10,7 @@ public class News extends AbstractEntity {
 
     private String title;
     private Date newsDate;
+    private String brief;
     private String content;
 
 
@@ -37,13 +38,20 @@ public class News extends AbstractEntity {
         this.content = content;
     }
 
+    public String getBrief() {
+        return brief;
+    }
+
+    public void setBrief(String brief) {
+        this.brief = brief;
+    }
+
     @Override
     public String toString() {
         return "News{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", newsDate=" + newsDate +
-                ", content='" + content + '\'' +
+                ", newsDate=" + newsDate  +
                 '}';
     }
 }
