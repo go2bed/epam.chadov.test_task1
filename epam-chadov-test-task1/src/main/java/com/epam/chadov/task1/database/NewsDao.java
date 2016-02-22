@@ -25,7 +25,7 @@ public class NewsDao implements GenericDao<News> {
     private static final String GET_BY_ID = "SELECT * FROM ANDREY.NEWS WHERE ID = ?";
     private static final String GET_ALL = "SELECT * FROM ANDREY.NEWS";
     private static final String DELETE = "DELETE FROM ANDREY.NEWS WHERE ID = ?";
-    private static final String UPDATE_TITLE = " UPDATE ANDREY.NEWS SET TITLE = ?, WHERE ID = ? ";
+    private static final String UPDATE_TITLE = " UPDATE ANDREY.NEWS SET TITLE = ? WHERE ID = ? ";
 
 
 
@@ -188,6 +188,5 @@ public class NewsDao implements GenericDao<News> {
         }
         return preparedStatement;
     }
-
 
 }
