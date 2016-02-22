@@ -12,9 +12,11 @@ public interface GenericDao<T extends AbstractEntity> {
 
     List<T> getAllNews();
 
-    boolean editNews();
+    boolean editNews(T object);
 
-    boolean deleteNews();
+    T create(T object);
+
+    boolean deleteNews(T object);
 
     T getById(long id);
 }
