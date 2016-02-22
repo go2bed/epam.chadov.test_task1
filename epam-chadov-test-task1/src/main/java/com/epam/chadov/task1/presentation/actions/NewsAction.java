@@ -1,5 +1,6 @@
 package com.epam.chadov.task1.presentation.actions;
 
+import com.epam.chadov.task1.database.NewsDao;
 import com.epam.chadov.task1.presentation.form.ShowNewsForm;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 public class NewsAction extends DispatchAction {
+    NewsDao newsDao;
 
     public ActionForward listNews (ActionMapping mapping, ActionForm form,
                                    HttpServletRequest request, HttpServletResponse response)

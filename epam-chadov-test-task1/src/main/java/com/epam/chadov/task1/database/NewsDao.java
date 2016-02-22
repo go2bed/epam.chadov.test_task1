@@ -24,6 +24,9 @@ public class NewsDao implements GenericDao<News> {
     private static final String GET_BY_ID = "SELECT * FROM ANDREY.NEWS WHERE ID = ?";
     private static final String GET_ALL = "SELECT * FROM ANDREY.NEWS";
     private static final String DELETE = "DELETE FROM ANDREY.NEWS WHERE ID = ?";
+    private static final String UPDATE_TITLE = " UPDATE ANDREY.NEWS SET TITLE = ?, WHERE ID = ? ";
+
+
 
     @Override
     public List<News> getAllNews() {
@@ -49,14 +52,16 @@ public class NewsDao implements GenericDao<News> {
         boolean isUpdated;
         try {
             connection = getConnection();
+            preparedStatement = connection.prepareStatement(UPDATE_TITLE);
             preparedStatement = preparedStatementForUpdate(preparedStatement, news);
             int count = preparedStatement.executeUpdate();
             isUpdated = (count > 0);
             preparedStatement.close();
+            connection.commit();
             connection.close();
         } catch (SQLException e) {
             logger.error("Couldn't update data of object in base", e);
-            throw new DaoException("Couldn't update data of object in base",e);
+            throw new DaoException("Couldn't update data of object in base", e);
         }
         return isUpdated;
     }
@@ -71,6 +76,7 @@ public class NewsDao implements GenericDao<News> {
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             resultSet.next();
             preparedStatement.close();
+            connection.commit();
             connection.close();
         } catch (SQLException e) {
             logger.error("Can't create object in DB", e);
@@ -89,6 +95,7 @@ public class NewsDao implements GenericDao<News> {
             int count = preparedStatement.executeUpdate();
             isDelete = (count > 0);
             preparedStatement.close();
+            connection.commit();
             connection.close();
         } catch (SQLException e) {
             logger.error("Can't delete object from DB", e);
@@ -164,9 +171,6 @@ public class NewsDao implements GenericDao<News> {
     public PreparedStatement preparedStatementForUpdate(PreparedStatement preparedStatement, News news) {
         try {
             preparedStatement.setString(1, news.getTitle());
-            preparedStatement.setDate(2, news.getNewsDate());
-            preparedStatement.setString(3, news.getBrief());
-            preparedStatement.setString(4, news.getContent());
         } catch (SQLException e) {
             logger.error("Can't set id fields for update statement in news dao", e);
             throw new DaoException("Can't set id fields for update statement in news dao", e);
