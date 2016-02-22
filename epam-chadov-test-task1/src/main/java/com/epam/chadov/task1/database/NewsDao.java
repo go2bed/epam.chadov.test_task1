@@ -189,5 +189,5 @@ public class NewsDao implements GenericDao<News> {
         return preparedStatement;
     }
 
-    //TODO:
+
 }
