@@ -3,8 +3,7 @@ package com.epam.chadov.task1.database.exception;
 /**
  *
  */
-public class DaoException extends RuntimeException {
-
+public class DaoException extends RuntimeException{
     public DaoException(String message) {
         super(message);
     }
