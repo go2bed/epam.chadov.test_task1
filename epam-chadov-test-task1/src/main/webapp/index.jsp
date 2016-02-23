@@ -4,7 +4,6 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
-<tiles:insert definition="my.home.page"/>
 
-
+<logic:redirect action="/newsAction?action=listNews"/>
 

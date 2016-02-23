@@ -13,17 +13,19 @@
         <action path="/newsAction"
                 type="com.epam.chadov.task1.presentation.actions.NewsAction"
                 parameter="action"
+                name="showNewsForm"
         >
-            <forward name="success" path="/pages/showNews.jsp"/>
+            <forward name="success" path="/main.jsp"/>
+            <forward name="edit_list" path="/pages/edit_page.jsp"/>
         </action>
-
 
 
         <action path="/Locale"
                 type="com.epam.chadov.task1.presentation.actions.SetLocale"
                 parameter="action"
+                name="showNewsForm"
         >
-            <forward name="success" path="/index.jsp"/>
+            <forward name="success" path="/main.jsp"/>
         </action>
     </action-mappings>
 

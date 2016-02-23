@@ -11,4 +11,12 @@
         <put name="footer" value="/pages/layouts/footer.jsp"/>
         <put name="title" value="my.home.page"/>
     </definition>
+
+    <definition name="my.edit.page" extends="my.home.page">
+        <put name="header" value="/pages/layouts/header.jsp"/>
+        <put name="sidebar" value="/pages/layouts/sidebar.jsp"/>
+        <put name="content" value="/pages/editNews.jsp"/>
+        <put name="footer" value="/pages/layouts/footer.jsp"/>
+        <put name="title" value="Edit Page"/>
+    </definition>
 </tiles-definitions>

@@ -39,6 +39,7 @@ public class NewsDao implements GenericDao<News> {
             preparedStatement.executeQuery();
             ResultSet resultSet = preparedStatement.getResultSet();
             list.addAll(parseResultSet(resultSet));
+            logger.info(list.toString());
             preparedStatement.close();
             connection.close();
         } catch (SQLException e) {
@@ -145,14 +146,16 @@ public class NewsDao implements GenericDao<News> {
                 News news = new News();
                 news.setId(resultset.getLong("id"));
                 news.setTitle(resultset.getString("title"));
-                news.setNewsDate(resultset.getDate("date"));
+                news.setNewsDate(resultset.getDate("news_date"));
                 news.setBrief(resultset.getString("brief"));
                 news.setContent(resultset.getString("content"));
+                newsList.add(news);
             }
         } catch (SQLException e) {
             logger.error("Can't parse result set from news base", e);
             throw new DaoException("Can't parse result set from news base", e);
         }
+
         return newsList;
     }
 
