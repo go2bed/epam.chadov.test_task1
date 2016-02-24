@@ -10,6 +10,7 @@ import org.apache.struts.action.DynaActionForm;
 import org.apache.struts.actions.DispatchAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.struts.DispatchActionSupport;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,20 +20,22 @@ import java.util.List;
 /**
  *
  */
-public class NewsAction extends DispatchAction {
+public class NewsAction extends DispatchActionSupport{
     private static final Logger logger = LoggerFactory.getLogger(NewsAction.class);
-    NewsDao newsDao = new NewsDao();
+    private NewsDao newsDao;
 
     public ActionForward listNews(ActionMapping mapping, ActionForm form,
                                   HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+
         ShowNewsForm showNewsForm = (ShowNewsForm) form;
 
         showNewsForm.setTitle("It's a hot news on today!");
+
+        newsDao = getWebApplicationContext().getBean(NewsDao.class);
         List<News> list = newsDao.getAllNews();
         logger.info(list.toString());
         showNewsForm.setNewsList(list);
-        //  request.setAttribute("display", "This is a list of all news");
         return mapping.findForward("success");
     }
 
@@ -46,7 +49,7 @@ public class NewsAction extends DispatchAction {
 
     public ActionForward addNews(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response)
-         throws Exception {
+            throws Exception {
 
 
         return mapping.findForward("add_news");

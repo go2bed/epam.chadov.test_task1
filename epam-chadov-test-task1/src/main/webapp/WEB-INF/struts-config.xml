@@ -30,26 +30,25 @@
     </action-mappings>
 
 
-    <controller>
-        <set-property property="processorClass" value="org.springframework.web.struts.AutowiringRequestProcessor" />
-    </controller>
+    <!--<controller>-->
+        <!--<set-property property="processorClass" value="org.springframework.web.struts.AutowiringRequestProcessor" />-->
+    <!--</controller>-->
 
     <message-resources parameter="messages"/>
 
 
-    <!-- Spring 4 plugin -->
-    <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
-        <set-property property="contextConfigLocation"
-                      value="spring-config.xml" />
-    </plug-in>
 
     <!-- Tiles plugin -->
     <plug-in className="org.apache.struts.tiles.TilesPlugin">
         <set-property property="definitions-config"
                       value="/WEB-INF/tiles-defs.xml"/>
 
-
     </plug-in>
 
+    <!--Spring 4 plugin-->
+    <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+        <set-property property="contextConfigLocation"
+                      value="classpath:spring-config.xml"/>
+    </plug-in>
 
 </struts-config>
