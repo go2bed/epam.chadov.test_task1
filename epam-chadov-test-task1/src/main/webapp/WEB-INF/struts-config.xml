@@ -29,13 +29,11 @@
         </action>
     </action-mappings>
 
-
     <!--<controller>-->
         <!--<set-property property="processorClass" value="org.springframework.web.struts.AutowiringRequestProcessor" />-->
     <!--</controller>-->
 
     <message-resources parameter="messages"/>
-
 
 
     <!-- Tiles plugin -->

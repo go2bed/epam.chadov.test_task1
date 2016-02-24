@@ -4,9 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 
 <body>
-<html:link action="/newsAction.do?action=editNews">
-    Edit News
-</html:link><br/>
+
 <form action="${pageContext.request.contextPath}/newsAction.do?action=editNews">
     <input type="submit" value="show news 2"/>
 </form>
@@ -17,33 +15,40 @@
 
 <div class="news-box">
 
-            <logic:notEmpty name="showNewsForm" property="newsList">
+    <logic:notEmpty name="showNewsForm" property="newsList">
 
-                    <table border="1">
-                        <tr>
-                            <td>News title</td>
-                            <td>Data</td>
-                            <td>Brief</td>
-                            <td>Content</td>
-                        </tr>
+        <table border="1">
+            <tr>
+                <td>News title</td>
+                <td>Data</td>
+                <td>Brief</td>
+                <td>Content</td>
+            </tr>
 
-                        <logic:iterate id="newsList" name="showNewsForm" property="newsList" indexId="id">
-                            <input type="hidden" name="<bean:write name="newsList" property="id"/> ">
-                            <tr>
-                                <td><bean:write name="newsList" property="title"/></td>
-                                <td><bean:write name="newsList" property="newsDate"/></td>
-                                <td><bean:write name="newsList" property="brief"/></td>
-                                <td><bean:write name="newsList" property="content"/></td>
-                            </tr>
-                        </logic:iterate>
-                    </table>
+            <logic:iterate id="newsList" name="showNewsForm" property="newsList" indexId="id">
+                <input type="hidden" name="<bean:write name="newsList" property="id"/> ">
+                <tr>
+                    <td><bean:write name="newsList" property="title"/></td>
+                    <td><bean:write name="newsList" property="newsDate"/></td>
+                    <td><bean:write name="newsList" property="brief"/></td>
+                    <td><bean:write name="newsList" property="content"/></td>
+                    <td><html:link action="/newsAction.do?action=viewNews">
+                        view
+                    </html:link></td>
+                    <td><html:link action="/newsAction.do?action=editNews">
+                        edit
+                    </html:link></td>
+                    <td><input type="checkbox" name="checkbox" value="newsList.id" title="checkbox"/></td>
+                </tr>
+            </logic:iterate>
+        </table>
 
-            </logic:notEmpty>
+    </logic:notEmpty>
 
 
-        <logic:empty name="showNewsForm" property="newsList">
-            <h2><bean:message key="news.empty"/></h2>
-        </logic:empty>
-    </div>
+    <logic:empty name="showNewsForm" property="newsList">
+        <h2><bean:message key="news.empty"/></h2>
+    </logic:empty>
+</div>
 
 </body>
