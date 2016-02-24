@@ -26,7 +26,8 @@
                     <td>Content</td>
                 </tr>
 
-                <logic:iterate id="news" name="showNewsForm" property="newsList">
+                <logic:iterate id="news" name="showNewsForm" property="newsList" indexId="id">
+                    <input type="hidden" name="<bean:write name="newsList" property="id"/> ">
                     <tr>
                         <td><bean:write name="news" property="title"/></td>
                         <td><bean:write name="news" property="newsDate"/></td>
@@ -39,7 +40,7 @@
     </logic:present>
 
     <logic:empty name="showNewsForm" property="newsList">
-         <h2><bean:message key="news.empty"/></h2>
+        <h2><bean:message key="news.empty"/></h2>
     </logic:empty>
 </div>
 
