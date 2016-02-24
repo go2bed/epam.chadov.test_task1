@@ -4,7 +4,7 @@
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 
 <div class="logo">
-    <a>News Management</a>
+    <a><bean:message key="main.page.logo"/></a>
 </div>
 <br/>
 <br/>

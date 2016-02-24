@@ -5,9 +5,6 @@
 
 <body>
 
-<form action="${pageContext.request.contextPath}/newsAction.do?action=editNews">
-    <input type="submit" value="show news 2"/>
-</form>
 
 <h1>It's a news world news today! And Hello from struts</h1>
 
