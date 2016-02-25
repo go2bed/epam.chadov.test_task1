@@ -20,7 +20,7 @@ import java.util.List;
 /**
  *
  */
-public class NewsAction extends DispatchActionSupport{
+public class NewsAction extends DispatchActionSupport {
     private static final Logger logger = LoggerFactory.getLogger(NewsAction.class);
     private NewsDao newsDao;
 
@@ -29,12 +29,10 @@ public class NewsAction extends DispatchActionSupport{
             throws Exception {
 
         ShowNewsForm showNewsForm = (ShowNewsForm) form;
-
         showNewsForm.setTitle("It's a hot news on today!");
-
         newsDao = getWebApplicationContext().getBean(NewsDao.class);
         List<News> list = newsDao.getAllNews();
-        logger.info(list.toString());
+        logger.info("This is what we get from DB" + list.toString());
         showNewsForm.setNewsList(list);
         return mapping.findForward("success");
     }
@@ -43,7 +41,8 @@ public class NewsAction extends DispatchActionSupport{
     public ActionForward editNews(ActionMapping mapping, ActionForm form,
                                   HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        request.setAttribute("display", "This form for editing some news");
+        ShowNewsForm showNewsForm = (ShowNewsForm) form;
+        showNewsForm.setTitle("This form for a editing news!");
         return mapping.findForward("edit_list");
     }
 

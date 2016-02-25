@@ -3,49 +3,44 @@
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 
-<body>
-
-
-<h1>It's a news world news today! And Hello from struts</h1>
-
-<h1><bean:write name="showNewsForm" property="title"/></h1>
 
 <div class="news-box">
+    <logic:present name="showNewsForm">
+        <logic:notEmpty name="showNewsForm" property="newsList">
+            <html:form method="post" action="/newsAction">
+                <logic:iterate id="newsList" name="showNewsForm" property="newsList" indexId="id">
+                    <input type="hidden" name="<bean:write name="newsList" property="id"/> ">
+                    <div class="clear-area">
+                        <div class="news-text">
+                            <h3>News title <bean:write name="newsList" property="title"/></h3> </br>
+                            <bean:write name="newsList" property="brief"/>
+                        </div>
 
-    <logic:notEmpty name="showNewsForm" property="newsList">
+                        <div class="news-date">
+                            <bean:write name="newsList" property="newsDate"/>
+                        </div>
+                    </div>
+                    <div class="actions-in-news-block">
+                        <html:link action="/newsAction.do?action=viewNews">
+                            view
+                        </html:link>
+                        <html:link action="/newsAction.do?action=editNews">
+                            edit
+                        </html:link>
+                        <input type="checkbox" name="checkbox" value="newsList.id" title="checkbox"/>
+                    </div>
 
-        <table border="1">
-            <tr>
-                <td>News title</td>
-                <td>Data</td>
-                <td>Brief</td>
-                <td>Content</td>
-            </tr>
-
-            <logic:iterate id="newsList" name="showNewsForm" property="newsList" indexId="id">
-                <input type="hidden" name="<bean:write name="newsList" property="id"/> ">
-                <tr>
-                    <td><bean:write name="newsList" property="title"/></td>
-                    <td><bean:write name="newsList" property="newsDate"/></td>
-                    <td><bean:write name="newsList" property="brief"/></td>
-                    <td><bean:write name="newsList" property="content"/></td>
-                    <td><html:link action="/newsAction.do?action=viewNews">
-                        view
-                    </html:link></td>
-                    <td><html:link action="/newsAction.do?action=editNews">
-                        edit
-                    </html:link></td>
-                    <td><input type="checkbox" name="checkbox" value="newsList.id" title="checkbox"/></td>
-                </tr>
-            </logic:iterate>
-        </table>
-
-    </logic:notEmpty>
-
+                </logic:iterate>
+                <div class="button-area">
+                    <button type="submit" value="deleteList" name="action"><bean:message
+                            key="news.button.delete"/></button>
+                </div>
+            </html:form>
+        </logic:notEmpty>
+    </logic:present>
 
     <logic:empty name="showNewsForm" property="newsList">
         <h2><bean:message key="news.empty"/></h2>
     </logic:empty>
 </div>
 
-</body>

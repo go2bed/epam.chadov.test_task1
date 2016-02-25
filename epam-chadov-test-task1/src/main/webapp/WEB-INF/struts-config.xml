@@ -17,6 +17,7 @@
         >
             <forward name="success" path="/main.jsp"/>
             <forward name="edit_list" path="/pages/edit_page.jsp"/>
+            <forward name="add_news" path="/pages/add_news_page.jsp"/>
         </action>
 
 
@@ -29,9 +30,8 @@
         </action>
     </action-mappings>
 
-    <!--<controller>-->
-        <!--<set-property property="processorClass" value="org.springframework.web.struts.AutowiringRequestProcessor" />-->
-    <!--</controller>-->
+
+    <controller processorClass="org.springframework.web.struts.AutowiringTilesRequestProcessor"/>
 
     <message-resources parameter="messages"/>
 
