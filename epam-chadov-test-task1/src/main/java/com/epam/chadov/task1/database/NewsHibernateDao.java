@@ -8,36 +8,50 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
  *
  */
-
 public class NewsHibernateDao implements GenericDao<News> {
     private static final Logger logger = LoggerFactory.getLogger(NewsHibernateDao.class);
+    private SessionFactory sessionFactory;
+    private Session session;
 
-    private Session getSession() {
-        return getSessionFactory().openSession();
+    @Autowired
+    public NewsHibernateDao(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 
+    private Session currentSession() {
+         if (sessionFactory.getCurrentSession() == null) {
+            return session = sessionFactory.openSession();
+        }
+        return this.sessionFactory.getCurrentSession();
+    }
+
+
     @Override
-    @SuppressWarnings(value = "This is unchecked criterion")
+    @SuppressWarnings(value = "unchecked")
     public List<News> getAllNews() {
-        Session session = getSession();
+        session = currentSession();
+        session.beginTransaction();
         Criteria criteria = session.createCriteria(News.class);
         criteria.add(Restrictions.isNotNull("id"));
-        List<News> newsList = criteria.list();
-        session.close();
-        return newsList;
+        return criteria.list();
     }
 
     @Override
-    public News getById(long id) {
+    public News getById(Long id) {
+        session = currentSession();
+        session.beginTransaction();
         try {
-            return (News) getSession().get(News.class, id);
+            return (News) session.get(News.class, id);
         } catch (HibernateException | ClassCastException e) {
             logger.error("Can't get object by Id", e);
             throw new DaoException("Can't get object by Id", e);
@@ -46,7 +60,7 @@ public class NewsHibernateDao implements GenericDao<News> {
 
     @Override
     public boolean editSaveNews(News news) {
-        Session session = getSession();
+        session = currentSession();
         Transaction transaction = session.beginTransaction();
         try {
             if (news.getId() == null) {
@@ -57,23 +71,25 @@ public class NewsHibernateDao implements GenericDao<News> {
             transaction.commit();
         } catch (HibernateException e) {
             logger.error("Can't save or update object in DB", e);
-            throw new DaoException("Can't save or update object in DB", e);
-        } finally {
-            session.close();
+            transaction.rollback();
+            return false;
         }
         return true;
     }
 
+
     @Override
     public boolean deleteNews(News news) {
-        return false;
-    }
-
-
-    private static SessionFactory getSessionFactory() {
-        Configuration configuration = new Configuration().configure("hibernate/hibernate.cfg.xml");
-        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                .applySettings(configuration.getProperties());
-        return configuration.buildSessionFactory(builder.build());
+        session = currentSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.delete(news);
+            transaction.commit();
+        } catch (HibernateException e) {
+            logger.error("Can't save or update object in DB", e);
+            transaction.rollback();
+            return false;
+        }
+        return true;
     }
 }

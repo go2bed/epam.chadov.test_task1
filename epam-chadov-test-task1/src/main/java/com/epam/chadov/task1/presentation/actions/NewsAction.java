@@ -23,7 +23,6 @@ import java.util.List;
  */
 public class NewsAction extends DispatchActionSupport {
     private static final Logger logger = LoggerFactory.getLogger(NewsAction.class);
-    private NewsDao newsDao;
     private NewsHibernateDao newsHibernateDao;
 
     public ActionForward listNews(ActionMapping mapping, ActionForm form,
@@ -31,10 +30,7 @@ public class NewsAction extends DispatchActionSupport {
             throws Exception {
 
         ShowNewsForm showNewsForm = (ShowNewsForm) form;
-        showNewsForm.setTitle("It's a hot news on today!");
         newsHibernateDao = getWebApplicationContext().getBean(NewsHibernateDao.class);
-        newsDao = getWebApplicationContext().getBean(NewsDao.class);
-//        List<News> list = newsDao.getAllNews();
         List<News> list = newsHibernateDao.getAllNews();
         logger.info("This is what we get from DB" + list.toString());
         showNewsForm.setNewsList(list);
@@ -47,12 +43,14 @@ public class NewsAction extends DispatchActionSupport {
             throws Exception {
         ShowNewsForm showNewsForm = (ShowNewsForm) form;
         showNewsForm.setTitle("This form for a editing news!");
+
         return mapping.findForward("edit_list");
     }
 
     public ActionForward addNews(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response)
             throws Exception {
+        ShowNewsForm showNewsForm = (ShowNewsForm) form;
 
 
         return mapping.findForward("add_news");

@@ -105,7 +105,7 @@ public class NewsDao implements GenericDao<News> {
     }
 
     @Override
-    public News getById(long id) {
+    public News getById(Long id) {
         List<News> list;
         try {
             connection = getConnection();
@@ -142,7 +142,7 @@ public class NewsDao implements GenericDao<News> {
         try {
             while (resultset.next()) {
                 News news = new News();
-                news.setId(resultset.getInt("id"));
+                news.setId(resultset.getLong("id"));
                 news.setTitle(resultset.getString("title"));
                 news.setNewsDate(resultset.getDate("news_date"));
                 news.setBrief(resultset.getString("brief"));

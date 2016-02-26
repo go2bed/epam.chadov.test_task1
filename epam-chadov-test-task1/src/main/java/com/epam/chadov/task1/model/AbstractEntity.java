@@ -3,16 +3,17 @@ package com.epam.chadov.task1.model;
 /**
  *
  */
+
 public abstract class AbstractEntity {
 
-    protected int id;
+    protected Long id;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(Object id) {
+        this.id = (Long)id;
     }
 
 
@@ -27,8 +28,8 @@ public abstract class AbstractEntity {
 
     }
 
-    @Override
-    public int hashCode() {
-        return (int) (id ^ (id >>> 32));
-    }
+//    @Override
+//    public int hashCode() {
+//        return (Long) (id ^ (id >>> 32));
+//    }
 }

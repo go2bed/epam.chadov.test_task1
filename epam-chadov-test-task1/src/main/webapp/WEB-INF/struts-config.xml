@@ -50,4 +50,11 @@
                       value="classpath:spring-config.xml"/>
     </plug-in>
 
+
+    <!--Struts Validator-->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property value="/org/apache/struts/validator/validator-rules.xml,/WEB-INF/validator.xml"
+                      property="pathnames"/>
+    </plug-in>
+
 </struts-config>

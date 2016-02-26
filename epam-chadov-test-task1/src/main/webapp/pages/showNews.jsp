@@ -12,7 +12,7 @@
                     <input type="hidden" name="<bean:write name="newsList" property="id"/> ">
                     <div class="clear-area">
                         <div class="news-text">
-                            <h3>News title <bean:write name="newsList" property="title"/></h3><br>
+                            <h3><bean:message key="news.edit.input.title"/> <bean:write name="newsList" property="title"/></h3><br>
                             <bean:write name="newsList" property="brief"/>
                         </div>
 
@@ -22,10 +22,10 @@
                     </div>
                     <div class="actions-in-news-block">
                         <html:link action="/newsAction.do?action=viewNews">
-                            view
+                            <bean:message key="news.link.view"/>
                         </html:link>
                         <html:link action="/newsAction.do?action=editNews">
-                            edit
+                            <bean:message key="news.link.edit"/>
                         </html:link>
                         <input type="checkbox" name="checkbox" value="newsList.id" title="checkbox"/>
                     </div>

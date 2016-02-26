@@ -12,23 +12,22 @@
                 <html:text styleId="news_title" property="title" value=""/>
             </div>
             <div class="field">
-                <label for="news_date">News Date</label>
+                <label for="news_date"><bean:message key="news.edit.input.date"/> </label>
                 <html:text styleId="news_date" property="newsDate" value=""/>
             </div>
             <div class="field">
-                <label for="news_brief">Brief</label>
+                <label for="news_brief"><bean:message key="news.edit.input.brief"/></label>
                 <html:textarea cols="80" rows="7" styleId="news_brief" property="brief" value=""/>
             </div>
 
             <div class="field">
-                <label for="news_content">Content</label>
+                <label for="news_content"><bean:message key="news.edit.input.content"/></label>
                 <html:textarea cols="80" rows="13" styleId="news_content" property="content" value=""/>
             </div>
             <div class="button-area">
-                <button type="submit" value="save" name="action"><bean:message key="news.button.save"/></button>
-                <input type="button" value="<bean:message key="news.button.save"/>" onclick="window.location = '/'"/>
+                <button type="submit" value="save" onclick="window.location = '/'" name="action"><bean:message key="news.button.save"/></button>
+                <button type="submit" value="cancel" name="action"><bean:message key="news.button.cancel"/></button>
             </div>
         </html:form>
-        <bean:write name="showNewsForm" property="title"/>
     </div>
 </div>

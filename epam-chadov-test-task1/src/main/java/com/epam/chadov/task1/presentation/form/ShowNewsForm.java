@@ -2,6 +2,7 @@ package com.epam.chadov.task1.presentation.form;
 
 import com.epam.chadov.task1.model.News;
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.validator.ValidatorForm;
 
 import java.sql.Date;
 import java.util.List;
@@ -9,8 +10,9 @@ import java.util.List;
 /**
  *
  */
-public class ShowNewsForm extends ActionForm {
-    private int id;
+public class ShowNewsForm extends ValidatorForm {
+
+    private long id;
     private String title;
     private String newsDate;
     private String brief;
@@ -37,7 +39,7 @@ public class ShowNewsForm extends ActionForm {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -64,4 +66,6 @@ public class ShowNewsForm extends ActionForm {
     public void setContent(String content) {
         this.content = content;
     }
+
+
 }
