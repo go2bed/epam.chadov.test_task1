@@ -5,13 +5,13 @@ package com.epam.chadov.task1.model;
  */
 public abstract class AbstractEntity {
 
-    protected long id;
+    protected int id;
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

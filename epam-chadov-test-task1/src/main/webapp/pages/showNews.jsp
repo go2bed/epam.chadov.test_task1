@@ -12,7 +12,7 @@
                     <input type="hidden" name="<bean:write name="newsList" property="id"/> ">
                     <div class="clear-area">
                         <div class="news-text">
-                            <h3>News title <bean:write name="newsList" property="title"/></h3> </br>
+                            <h3>News title <bean:write name="newsList" property="title"/></h3><br>
                             <bean:write name="newsList" property="brief"/>
                         </div>
 

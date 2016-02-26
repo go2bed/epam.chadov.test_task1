@@ -2,7 +2,6 @@ package com.epam.chadov.task1.database;
 
 import com.epam.chadov.task1.database.exception.DaoException;
 import com.epam.chadov.task1.model.News;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +48,7 @@ public class NewsDao implements GenericDao<News> {
     }
 
     @Override
-    public boolean editNews(News news) {
+    public boolean editSaveNews(News news) {
         boolean isUpdated;
         try {
             connection = getConnection();
@@ -67,7 +66,7 @@ public class NewsDao implements GenericDao<News> {
         return isUpdated;
     }
 
-    @Override
+
     public News create(News news) {
         try {
             connection = getConnection();
@@ -143,7 +142,7 @@ public class NewsDao implements GenericDao<News> {
         try {
             while (resultset.next()) {
                 News news = new News();
-                news.setId(resultset.getLong("id"));
+                news.setId(resultset.getInt("id"));
                 news.setTitle(resultset.getString("title"));
                 news.setNewsDate(resultset.getDate("news_date"));
                 news.setBrief(resultset.getString("brief"));

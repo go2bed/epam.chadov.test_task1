@@ -7,6 +7,8 @@
 .logo {
     float: left;
     padding: 20px 20px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 /* Common wrapper line border on all page*/
@@ -63,6 +65,7 @@ body {
 .news-date{
     float: right;
     text-align: right;
+    text-decoration: underline;
     width: 20%;
     margin-top: 21px;
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd" >
+
+<hibernate-configuration>
+    <session-factory>
+        <!--This properties for Data Base connection-->
+        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="connection.url">jdbc:oracle:thin:@//localhost:1521/XE</property>
+        <property name="connection.username">andrey</property>
+        <property name="connection.password">andrey</property>
+        <property name="connection.pool_size">10</property>
+        <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+
+        <!-- Store session in thread -->
+        <property name="current.session.context.class">thread</property>
+
+
+         <!--This implementation is for recognizing stale query results and-->
+         <!-- re-running queries when it detects this condition, re-caching the new-->
+         <!--results.-->
+        <property name="cache.provider_class">org.hibernate.cache.internal.StandardQueryCache</property>
+
+        <!-- Show sql query in console and format it-->
+        <property name="show.sql">true</property>
+        <property name="format.sql">true</property>
+
+
+        <!-- Mapping to News entity hibernate config -->
+        <mapping resource="/hibernate/news-hiber-map.hbm.xml"/>
+       </session-factory>
+</hibernate-configuration>

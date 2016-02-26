@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--This is model mapping of class News to it's entity in DB-->
+<hibernate-mapping package="com.epam.chadov.task1.model">
+    <class name="News" table="NEWS">
+        <id name="id" column="ID" type="java.lang.Long">
+            <generator class="sequence">
+                <param name="sequences">S_NEWS</param>
+            </generator>
+
+        </id>
+        <property name="title" column="TITLE"/>
+        <property name="newsDate" column="NEWS_DATE"/>
+        <property name="brief" column="BRIEF"/>
+        <property name="content" column="CONTENT"/>
+    </class>
+</hibernate-mapping>

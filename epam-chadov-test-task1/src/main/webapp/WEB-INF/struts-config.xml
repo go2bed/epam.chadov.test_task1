@@ -30,9 +30,10 @@
         </action>
     </action-mappings>
 
-
+    <!--AutowiringTilesRequestProcessor for autowiring Struts Actions with Spring beans-->
     <controller processorClass="org.springframework.web.struts.AutowiringTilesRequestProcessor"/>
 
+    <!--Internationalization resources-->
     <message-resources parameter="messages"/>
 
 

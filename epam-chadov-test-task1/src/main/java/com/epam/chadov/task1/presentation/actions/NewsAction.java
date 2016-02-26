@@ -1,6 +1,7 @@
 package com.epam.chadov.task1.presentation.actions;
 
 import com.epam.chadov.task1.database.NewsDao;
+import com.epam.chadov.task1.database.NewsHibernateDao;
 import com.epam.chadov.task1.model.News;
 import com.epam.chadov.task1.presentation.form.ShowNewsForm;
 import org.apache.struts.action.ActionForm;
@@ -23,6 +24,7 @@ import java.util.List;
 public class NewsAction extends DispatchActionSupport {
     private static final Logger logger = LoggerFactory.getLogger(NewsAction.class);
     private NewsDao newsDao;
+    private NewsHibernateDao newsHibernateDao;
 
     public ActionForward listNews(ActionMapping mapping, ActionForm form,
                                   HttpServletRequest request, HttpServletResponse response)
@@ -30,8 +32,10 @@ public class NewsAction extends DispatchActionSupport {
 
         ShowNewsForm showNewsForm = (ShowNewsForm) form;
         showNewsForm.setTitle("It's a hot news on today!");
+        newsHibernateDao = getWebApplicationContext().getBean(NewsHibernateDao.class);
         newsDao = getWebApplicationContext().getBean(NewsDao.class);
-        List<News> list = newsDao.getAllNews();
+//        List<News> list = newsDao.getAllNews();
+        List<News> list = newsHibernateDao.getAllNews();
         logger.info("This is what we get from DB" + list.toString());
         showNewsForm.setNewsList(list);
         return mapping.findForward("success");
