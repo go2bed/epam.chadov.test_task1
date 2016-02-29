@@ -12,7 +12,15 @@ public class News extends AbstractEntity {
     private Date newsDate;
     private String brief;
     private String content;
+    private String deleted;
 
+    public String getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(String deleted) {
+        this.deleted = deleted;
+    }
 
     public String getTitle() {
         return title;

@@ -26,7 +26,7 @@
             </div>
             <div class="button-area">
                 <button type="submit" value="save" onclick="window.location = '/'" name="action"><bean:message key="news.button.save"/></button>
-                <button type="submit" value="cancel" name="action"><bean:message key="news.button.cancel"/></button>
+                <button type="button" onclick="window.location = '/'"><bean:message key="news.button.cancel"/></button>
             </div>
         </html:form>
     </div>

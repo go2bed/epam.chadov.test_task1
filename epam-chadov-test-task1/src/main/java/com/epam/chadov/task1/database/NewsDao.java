@@ -12,6 +12,8 @@ import java.util.List;
 /**
  *
  */
+
+@Deprecated
 public class NewsDao implements GenericDao<News> {
     private final static Logger logger = LoggerFactory.getLogger(NewsDao.class);
     private static Connection connection;

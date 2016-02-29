@@ -42,8 +42,6 @@ public class NewsAction extends DispatchActionSupport {
                                   HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         ShowNewsForm showNewsForm = (ShowNewsForm) form;
-        showNewsForm.setTitle("This form for a editing news!");
-
         return mapping.findForward("edit_list");
     }
 
@@ -51,8 +49,20 @@ public class NewsAction extends DispatchActionSupport {
                                  HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         ShowNewsForm showNewsForm = (ShowNewsForm) form;
-
-
         return mapping.findForward("add_news");
+    }
+
+
+    public ActionForward deleteList(ActionMapping mapping, ActionForm form,
+                                    HttpServletRequest request, HttpServletResponse response)
+        throws Exception{
+        ShowNewsForm showNewsForm = (ShowNewsForm) form;
+        List<News> newsList = showNewsForm.getNewsList();
+        for (News news: newsList){
+            if(news.getDeleted().equals("true")){
+                newsHibernateDao.deleteNews(news);
+            }
+        }
+        return mapping.findForward("success");
     }
 }

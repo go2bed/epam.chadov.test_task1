@@ -27,7 +27,7 @@
                         <html:link action="/newsAction.do?action=editNews">
                             <bean:message key="news.link.edit"/>
                         </html:link>
-                        <input type="checkbox" name="checkbox" value="newsList.id" title="checkbox"/>
+                        <html:checkbox name="newsList" property="deleted" value="true" indexed="true"/>
                     </div>
 
                 </logic:iterate>
