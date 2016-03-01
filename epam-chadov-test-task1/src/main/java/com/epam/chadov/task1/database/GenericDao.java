@@ -17,5 +17,5 @@ public interface GenericDao<T extends AbstractEntity> {
 
     boolean deleteNews(News news);
 
-    T getById(Long id);
+    T getById(Integer id);
 }

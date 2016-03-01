@@ -9,7 +9,7 @@
         <html:link action="/newsAction.do?action=listNews">
             <li><bean:message key="side.bar.action.list"/></li>
         </html:link>
-        <html:link action="/newsAction.do?action=addNews">
+        <html:link  action="/newsAction.do?action=addNews">
             <li><bean:message key="side.bar.action.add"/></li>
         </html:link>
     </ul>

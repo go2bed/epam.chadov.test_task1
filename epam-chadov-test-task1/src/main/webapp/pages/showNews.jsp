@@ -21,11 +21,11 @@
                         </div>
                     </div>
                     <div class="actions-in-news-block">
-                        <html:link action="/newsAction.do?action=viewNews">
+                        <html:link action="/newsAction.do?action=viewNews&id=${newsList.id}">
                             <bean:message key="news.link.view"/>
                         </html:link>
-                        <html:link action="/newsAction.do?action=editNews">
-                            <bean:message key="news.link.edit"/>
+                        <html:link action="/newsAction.do?action=editNews&id=${newsList.id}">
+                                   <bean:message key="news.link.edit"/>
                         </html:link>
                         <html:checkbox name="newsList" property="deleted" value="true" indexed="true"/>
                     </div>

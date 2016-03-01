@@ -24,7 +24,33 @@
                  </var>
         </field>
 
+        <field property="brief" depends="maxlength">
 
+            <msg key="err.news.brief.required" name="required"/>
+            <msg key="err.news.brief.length" name="maxlength"/>
+
+            <arg name="maxlength" key="${var:maxlength}" resource="false" position="0"/>
+
+            <var>
+                <var-name>maxlength</var-name>
+                <var-value>500</var-value>
+            </var>
+
+        </field>
+
+        <field property="content" depends=" maxlength">
+
+            <msg key="err.news.content.required" name="required"/>
+            <msg key="err.news.content.length" name="maxlength"/>
+
+            <arg name="maxlength" key="${maxlength}" resource="false" position="0"/>
+
+            <var>
+                <var-name>maxlength</var-name>
+                <var-value>2048</var-value>
+            </var>
+
+        </field>
     </form>
 </formset>
 

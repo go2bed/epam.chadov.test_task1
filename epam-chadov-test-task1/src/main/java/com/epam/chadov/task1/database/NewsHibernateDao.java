@@ -47,7 +47,7 @@ public class NewsHibernateDao implements GenericDao<News> {
     }
 
     @Override
-    public News getById(Long id) {
+    public News getById(Integer id) {
         session = currentSession();
         session.beginTransaction();
         try {
@@ -62,6 +62,7 @@ public class NewsHibernateDao implements GenericDao<News> {
     public boolean editSaveNews(News news) {
         session = currentSession();
         Transaction transaction = session.beginTransaction();
+        logger.info("that news, which need save" + news.toString());
         try {
             if (news.getId() == null) {
                 session.save(news);

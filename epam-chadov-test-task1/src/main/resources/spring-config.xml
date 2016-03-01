@@ -6,16 +6,22 @@
     <!--Bean of standard simple DAO (Deprecated)-->
     <bean id="simpleNewsDao" class="com.epam.chadov.task1.database.NewsDao"/>
 
+    <!--Flyway-->
+    <bean id="flyway" class="org.flywaydb.core.Flyway" init-method="migrate">
+        <property name="baselineOnMigrate" value="true" />
+        <property name="dataSource" ref="myDataSource"/>
+    </bean>
+
     <!--Data for connection pool-->
     <bean id="myDataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@//localhost:1521/XE"/>
-        <property name="username" value="andrey"/>
-        <property name="password" value="andrey"/>
+        <property name="username" value="luntik"/>
+        <property name="password" value="luntik"/>
     </bean>
 
     <!--Session Factory for create sessions-->
-    <bean id="mySessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <bean id="mySessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" depends-on="flyway">
         <property name="dataSource" ref="myDataSource"/>
          <property name="mappingResources">
             <list>
@@ -35,4 +41,9 @@
     <bean id="hibernateNewsDao" class="com.epam.chadov.task1.database.NewsHibernateDao">
         <constructor-arg name="sessionFactory" ref="mySessionFactory"/>
     </bean>
+
+
+
+
+
 </beans>

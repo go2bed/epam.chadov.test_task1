@@ -11,8 +11,7 @@ import java.util.List;
  *
  */
 public class ShowNewsForm extends ValidatorForm {
-
-    private long id;
+    private int id;
     private String title;
     private String newsDate;
     private String brief;
@@ -35,11 +34,11 @@ public class ShowNewsForm extends ValidatorForm {
         this.title = title;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -67,5 +66,15 @@ public class ShowNewsForm extends ValidatorForm {
         this.content = content;
     }
 
-
+    @Override
+    public String toString() {
+        return "ShowNewsForm{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", newsDate='" + newsDate + '\'' +
+                ", brief='" + brief + '\'' +
+                ", content='" + content + '\'' +
+                ", newsList=" + newsList +
+                '}';
+    }
 }

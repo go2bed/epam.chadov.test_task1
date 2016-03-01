@@ -18,6 +18,7 @@
             <forward name="success" path="/main.jsp"/>
             <forward name="edit_list" path="/pages/edit_page.jsp"/>
             <forward name="add_news" path="/pages/add_news_page.jsp"/>
+            <forward name="view_list" path="/pages/view_news_page.jsp"/>
         </action>
 
 

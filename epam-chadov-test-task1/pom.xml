@@ -132,5 +132,13 @@
             <artifactId>commons-dbcp2</artifactId>
             <version>2.0</version>
         </dependency>
+
+
+        <!--Flyway 3.2.1 BD migration -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>3.2.1</version>
+        </dependency>
     </dependencies>
 </project>

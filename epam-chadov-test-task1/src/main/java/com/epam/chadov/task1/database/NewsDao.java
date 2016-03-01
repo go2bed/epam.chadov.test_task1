@@ -107,12 +107,12 @@ public class NewsDao implements GenericDao<News> {
     }
 
     @Override
-    public News getById(Long id) {
+    public News getById(Integer id) {
         List<News> list;
         try {
             connection = getConnection();
             preparedStatement = connection.prepareStatement(GET_BY_ID);
-            preparedStatement.setLong(1, id);
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             list = parseResultSet(resultSet);
             preparedStatement.close();
@@ -144,7 +144,7 @@ public class NewsDao implements GenericDao<News> {
         try {
             while (resultset.next()) {
                 News news = new News();
-                news.setId(resultset.getLong("id"));
+                news.setId(resultset.getInt("id"));
                 news.setTitle(resultset.getString("title"));
                 news.setNewsDate(resultset.getDate("news_date"));
                 news.setBrief(resultset.getString("brief"));
@@ -162,7 +162,7 @@ public class NewsDao implements GenericDao<News> {
     public PreparedStatement preparedStatementForInsert(PreparedStatement preparedStatement, News news) {
         try {
             preparedStatement.setString(1, news.getTitle());
-            preparedStatement.setDate(2, news.getNewsDate());
+//            preparedStatement.setDate(2, news.getNewsDate());
             preparedStatement.setString(3, news.getBrief());
             preparedStatement.setString(4, news.getContent());
         } catch (SQLException e) {
@@ -184,7 +184,7 @@ public class NewsDao implements GenericDao<News> {
 
     public PreparedStatement preparedStatementForDelete(PreparedStatement preparedStatement, News news) {
         try {
-            preparedStatement.setLong(1, news.getId());
+            preparedStatement.setInt(1, news.getId());
         } catch (SQLException e) {
             logger.error("Can't set id field for delete statement in news dao", e);
             throw new DaoException("Can't set id field for delete statement in news dao", e);

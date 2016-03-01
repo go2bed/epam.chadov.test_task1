@@ -5,9 +5,9 @@
 <!--This is model mapping of class News to it's entity in DB-->
 <hibernate-mapping package="com.epam.chadov.task1.model">
     <class name="News" table="NEWS">
-        <id name="id" column="ID" type="java.lang.Long">
+        <id name="id" column="ID" type="int">
             <generator class="sequence">
-                <param name="sequences">S_NEWS</param>
+                <param name="sequence">NEWS_SEQ</param>
             </generator>
 
         </id>
