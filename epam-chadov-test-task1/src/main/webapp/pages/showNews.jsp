@@ -12,10 +12,10 @@
                     <input type="hidden" name="<bean:write name="newsList" property="id"/> ">
                     <div class="clear-area">
                         <div class="news-text">
-                            <h3><bean:message key="news.edit.input.title"/> <bean:write name="newsList" property="title"/></h3><br>
+                            <h3><bean:message key="news.edit.input.title"/>
+                                <bean:write name="newsList" property="title"/></h3><br>
                             <bean:write name="newsList" property="brief"/>
                         </div>
-
                         <div class="news-date">
                             <bean:write name="newsList" property="newsDate"/>
                         </div>
@@ -25,11 +25,10 @@
                             <bean:message key="news.link.view"/>
                         </html:link>
                         <html:link action="/newsAction.do?action=editNews&id=${newsList.id}">
-                                   <bean:message key="news.link.edit"/>
+                            <bean:message key="news.link.edit"/>
                         </html:link>
-                        <html:checkbox name="newsList" property="deleted" value="true" indexed="true"/>
+                        <input type="checkbox" name="checkbox" value="${newsList.id}" title="checkbox"/>
                     </div>
-
                 </logic:iterate>
                 <div class="button-area">
                     <button type="submit" value="deleteList" name="action"><bean:message

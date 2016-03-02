@@ -1,28 +1,18 @@
 package com.epam.chadov.task1.model;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.sql.Date;
 
-/**
- *
- */
-
-
 public class News extends AbstractEntity {
+
+    private static final Logger logger = LoggerFactory.getLogger(News.class);
 
     private String title;
     private Date newsDate;
     private String brief;
     private String content;
-    private String deleted;
-
-    public String getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(String deleted) {
-        this.deleted = deleted;
-    }
 
     public String getTitle() {
         return title;
@@ -58,12 +48,11 @@ public class News extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "News{" +
+        return "News{" + "id = " + id + '\'' +
                 "title='" + title + '\'' +
                 ", newsDate=" + newsDate +
                 ", brief='" + brief + '\'' +
                 ", content='" + content + '\'' +
-                ", deleted='" + deleted + '\'' +
                 '}';
     }
 }

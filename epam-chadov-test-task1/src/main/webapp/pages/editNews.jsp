@@ -30,6 +30,7 @@
                 <html:textarea cols="80" rows="13" styleId="news_content" property="content" value="${news.content}"/>
             </div>
             <div class="button-area">
+                <input type="hidden" name="id" value="${news.id}">
                 <button type="submit" value="save" onclick="window.location = '/'" name="action"><bean:message key="news.button.save"/></button>
                 <button type="button" onclick="window.location = '/'"><bean:message key="news.button.cancel"/></button>
             </div>

@@ -9,7 +9,6 @@
             <generator class="sequence">
                 <param name="sequence">NEWS_SEQ</param>
             </generator>
-
         </id>
         <property name="title" column="TITLE"/>
         <property name="newsDate" column="NEWS_DATE"/>

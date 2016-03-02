@@ -25,17 +25,14 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-/**
- *
- */
 public class NewsAction extends DispatchActionSupport {
+
     private static final Logger logger = LoggerFactory.getLogger(NewsAction.class);
     private NewsHibernateDao newsHibernateDao;
 
     public ActionForward listNews(ActionMapping mapping, ActionForm form,
                                   HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-
         ShowNewsForm showNewsForm = (ShowNewsForm) form;
         newsHibernateDao = getWebApplicationContext().getBean(NewsHibernateDao.class);
         List<News> list = newsHibernateDao.getAllNews();
@@ -43,7 +40,6 @@ public class NewsAction extends DispatchActionSupport {
         showNewsForm.setNewsList(list);
         return mapping.findForward("success");
     }
-
 
     public ActionForward editNews(ActionMapping mapping, ActionForm form,
                                   HttpServletRequest request, HttpServletResponse response)
@@ -65,43 +61,42 @@ public class NewsAction extends DispatchActionSupport {
     public ActionForward save(ActionMapping mapping, ActionForm form,
                               HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-
         News news = newsFromForm((ShowNewsForm) form, request);
         if (news == null) {
             return mapping.findForward("failure");
         }
         newsHibernateDao = getWebApplicationContext().getBean(NewsHibernateDao.class);
         newsHibernateDao.editSaveNews(news);
-        return mapping.findForward("success");
+        return mapping.findForward("list_news");
     }
-
 
     public ActionForward deleteList(ActionMapping mapping, ActionForm form,
                                     HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         ShowNewsForm showNewsForm = (ShowNewsForm) form;
         newsHibernateDao = getWebApplicationContext().getBean(NewsHibernateDao.class);
-        List<News> newsList = showNewsForm.getNewsList();
-        for (News news : newsList) {
-            if (news.getDeleted().equals("true")) {
-                newsHibernateDao.deleteNews(news);
+        String[] parameterValues = request.getParameterValues("checkbox");
+        if (parameterValues != null) {
+            for (String id : parameterValues) {
+                newsHibernateDao.deleteNews(Integer.parseInt(id));
             }
+        } else {
+            String id = request.getParameter("id");
+            newsHibernateDao.deleteNews(Integer.parseInt(id));
         }
-        return mapping.findForward("success");
+        return mapping.findForward("list_news");
     }
 
     public ActionForward viewNews(ActionMapping mapping, ActionForm form,
                                   HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-
         newsHibernateDao = getWebApplicationContext().getBean(NewsHibernateDao.class);
         Integer id = Integer.valueOf(request.getParameter("id"));
         logger.info(request.getParameter("id"));
         News news = newsHibernateDao.getById(id);
         request.setAttribute("news", news);
-        return mapping.findForward("view_list");
+        return mapping.findForward("view_news");
     }
-
 
     private News newsFromForm(ShowNewsForm form, HttpServletRequest request) {
         News news = new News();
@@ -113,15 +108,14 @@ public class NewsAction extends DispatchActionSupport {
         news.setBrief(form.getBrief());
         news.setContent(form.getContent());
         String dateFromForm = form.getNewsDate();
-        DateFormat format = new SimpleDateFormat("yyyy.MM.dd", Locale.getDefault());
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date date = format.parse(dateFromForm);
-            java.sql.Date sqlDate = new java.sql.Date(date.getDate());
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
             news.setNewsDate(sqlDate);
-
         } catch (ParseException e) {
-            logger.error("Can't parse data from newsForm", e);
-            throw new ActionException("Can't parse data from newsForm", e);
+            logger.error("Can't parse date from newsForm", e);
+            throw new ActionException("Can't parse date from newsForm", e);
         }
         logger.info(news.toString());
         return news;

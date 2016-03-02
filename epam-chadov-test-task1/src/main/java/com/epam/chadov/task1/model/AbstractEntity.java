@@ -1,10 +1,6 @@
 package com.epam.chadov.task1.model;
 
-
-
-/**
- *
- */
+import java.util.Objects;
 
 public abstract class AbstractEntity {
 
@@ -18,16 +14,12 @@ public abstract class AbstractEntity {
         this.id = Integer.valueOf(id.toString());
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof AbstractEntity)) return false;
-
         AbstractEntity that = (AbstractEntity) o;
-
-        return id == that.id;
-
+        return Objects.equals(id, that.id);
     }
 
     @Override

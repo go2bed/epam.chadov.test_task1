@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-    <!--Bean of standard simple DAO (Deprecated)-->
-    <bean id="simpleNewsDao" class="com.epam.chadov.task1.database.NewsDao"/>
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!--Flyway-->
     <bean id="flyway" class="org.flywaydb.core.Flyway" init-method="migrate">
-        <property name="baselineOnMigrate" value="true" />
+        <property name="baselineOnMigrate" value="true"/>
         <property name="dataSource" ref="myDataSource"/>
     </bean>
 
@@ -23,7 +21,7 @@
     <!--Session Factory for create sessions-->
     <bean id="mySessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" depends-on="flyway">
         <property name="dataSource" ref="myDataSource"/>
-         <property name="mappingResources">
+        <property name="mappingResources">
             <list>
                 <value>hibernate/news-hiber-map.hbm.xml</value>
             </list>
@@ -37,13 +35,14 @@
         </property>
     </bean>
 
-
+    <!--NewsDAO class-->
     <bean id="hibernateNewsDao" class="com.epam.chadov.task1.database.NewsHibernateDao">
         <constructor-arg name="sessionFactory" ref="mySessionFactory"/>
     </bean>
 
-
-
-
+    <!--DataSource/ the PlatformTransactionManager -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="myDataSource"/>
+    </bean>
 
 </beans>
