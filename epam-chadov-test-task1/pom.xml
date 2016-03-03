@@ -48,7 +48,6 @@
             </exclusions>
         </dependency>
 
-
         <!-- Oracle JDBC driver 11.2.0.3-->
         <dependency>
             <groupId>com.oracle</groupId>

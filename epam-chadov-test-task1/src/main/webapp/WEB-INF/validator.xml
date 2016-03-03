@@ -5,53 +5,57 @@
         "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
 
 <form-validation>
-<formset>
-    <form name="showNewsForm">
-        <field property="title" depends="maxlength,minlength">
-            <msg key="err.title.length" name="minlength"/>
-            <msg key="err.title.length" name="maxlength"/>
+    <formset>
+        <form name="showNewsForm">
+            <field property="title" depends="maxlength,minlength">
+                <msg key="err.title.length" name="minlength"/>
+                <msg key="err.title.length" name="maxlength"/>
 
-            <arg key="${var:minlength}" name="minlength" resource="false"/>
-            <arg key="${var:maxlength}" name="maxlength" resource="false"/>
+                <arg key="${var:minlength}" name="minlength" resource="false"/>
+                <arg key="${var:maxlength}" name="maxlength" resource="false"/>
 
-                 <var>
-                     <var-name>minlength</var-name>
-                     <var-value>1</var-value>
-                 </var>
-                 <var>
-                     <var-name>maxlength</var-name>
-                     <var-value>100</var-value>
-                 </var>
-        </field>
+                <var>
+                    <var-name>minlength</var-name>
+                    <var-value>1</var-value>
+                </var>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>100</var-value>
+                </var>
+            </field>
 
-        <field property="brief" depends="maxlength">
+            <field property="brief" depends="maxlength">
+                <msg key="err.news.brief.length" name="maxlength"/>
 
-            <msg key="err.news.brief.required" name="required"/>
-            <msg key="err.news.brief.length" name="maxlength"/>
+                <arg name="maxlength" key="${var:maxlength}" resource="false" position="0"/>
 
-            <arg name="maxlength" key="${var:maxlength}" resource="false" position="0"/>
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>500</var-value>
+                </var>
+            </field>
 
-            <var>
-                <var-name>maxlength</var-name>
-                <var-value>500</var-value>
-            </var>
+            <field property="content" depends="maxlength">
+                <msg key="err.news.content.length" name="maxlength"/>
 
-        </field>
+                <arg name="maxlength" key="${maxlength}" resource="false" position="0"/>
 
-        <field property="content" depends=" maxlength">
+                <var>
+                    <var-name>maxlength</var-name>
+                    <var-value>2048</var-value>
+                </var>
+            </field>
+            <field property="newsDate" depends="date">
+                <msg key="err.news.content.date" name="maxlength"/>
 
-            <msg key="err.news.content.required" name="required"/>
-            <msg key="err.news.content.length" name="maxlength"/>
+                <arg name="date" key="${var:datePattern}" resource="false" position="0"/>
 
-            <arg name="maxlength" key="${maxlength}" resource="false" position="0"/>
-
-            <var>
-                <var-name>maxlength</var-name>
-                <var-value>2048</var-value>
-            </var>
-
-        </field>
-    </form>
-</formset>
-
+                <var>
+                    <var-name>datePattern</var-name>
+                    <var-value>yyyy-MM-dd</var-value>
+                </var>
+            </field>
+        </form>
+    </formset>
 </form-validation>
+

@@ -45,17 +45,14 @@ public class NewsAction extends DispatchActionSupport {
                                   HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         newsHibernateDao = getWebApplicationContext().getBean(NewsHibernateDao.class);
-        Integer id = Integer.valueOf(request.getParameter("id"));
-        logger.info(request.getParameter("id"));
-        News news = newsHibernateDao.getById(id);
-        request.setAttribute("news", news);
-        return mapping.findForward("edit_list");
-    }
-
-    public ActionForward addNews(ActionMapping mapping, ActionForm form,
-                                 HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-        return mapping.findForward("add_news");
+        if (request.getParameter("id") == null) {
+            return mapping.findForward("edit_list");
+        } else {
+            Integer id = Integer.valueOf(request.getParameter("id"));
+            News news = newsHibernateDao.getById(id);
+            request.setAttribute("news", news);
+            return mapping.findForward("edit_list");
+        }
     }
 
     public ActionForward save(ActionMapping mapping, ActionForm form,
@@ -101,7 +98,7 @@ public class NewsAction extends DispatchActionSupport {
     private News newsFromForm(ShowNewsForm form, HttpServletRequest request) {
         News news = new News();
         String id = request.getParameter("id");
-        if (id != null) {
+        if (id != null && !id.isEmpty()) {
             news.setId(id);
         }
         news.setTitle(form.getTitle());

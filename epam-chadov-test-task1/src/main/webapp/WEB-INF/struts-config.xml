@@ -14,14 +14,13 @@
                 type="com.epam.chadov.task1.presentation.actions.NewsAction"
                 parameter="action"
                 name="showNewsForm"
+                validate="false"
         >
             <forward name="success" path="/main.jsp"/>
             <forward name="list_news" path="/index.jsp"/>
             <forward name="edit_list" path="/pages/edit_page.jsp"/>
-            <forward name="add_news" path="/pages/add_news_page.jsp"/>
             <forward name="view_news" path="/pages/view_news_page.jsp"/>
         </action>
-
 
         <action path="/Locale"
                 type="com.epam.chadov.task1.presentation.actions.SetLocale"
@@ -38,12 +37,10 @@
     <!--Internationalization resources-->
     <message-resources parameter="messages"/>
 
-
     <!-- Tiles plugin -->
     <plug-in className="org.apache.struts.tiles.TilesPlugin">
         <set-property property="definitions-config"
                       value="/WEB-INF/tiles-defs.xml"/>
-
     </plug-in>
 
     <!--Spring 4 plugin-->
@@ -52,11 +49,9 @@
                       value="classpath:spring-config.xml"/>
     </plug-in>
 
-
     <!--Struts Validator-->
     <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
         <set-property value="/org/apache/struts/validator/validator-rules.xml,/WEB-INF/validator.xml"
                       property="pathnames"/>
     </plug-in>
-
 </struts-config>

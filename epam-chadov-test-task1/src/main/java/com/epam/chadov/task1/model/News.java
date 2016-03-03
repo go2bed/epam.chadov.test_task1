@@ -1,13 +1,9 @@
 package com.epam.chadov.task1.model;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.sql.Date;
 
 public class News extends AbstractEntity {
-
-    private static final Logger logger = LoggerFactory.getLogger(News.class);
 
     private String title;
     private Date newsDate;

@@ -30,6 +30,13 @@ body {
     margin: 0;
 }
 
+.error {
+    clear: both;
+    margin: 5px;
+    text-align: center;
+    color: red;
+}
+
 .content {
     float: right;
     width: 80%;

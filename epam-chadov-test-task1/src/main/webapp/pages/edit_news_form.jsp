@@ -12,6 +12,7 @@
 <div class="news-box">
     <div class="edit-form">
         <html:form action="/newsAction" method="post">
+            <div class="error"><html:errors/><br/><c:out value="${error}"/></div>
             <div class="field">
                 <label for="news_title"><bean:message key="news.edit.input.title"/> </label>
                   <html:text styleId="news_title" property="title" value="${news.title}"/>
