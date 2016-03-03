@@ -8,7 +8,7 @@
     <definition name="my.home.page" template="/common-layout.jsp">
         <put name="header" value="/pages/layouts/header.jsp"/>
         <put name="sidebar" value="/pages/layouts/sidebar.jsp"/>
-        <put name="content" value="/pages/showNews.jsp"/>
+        <put name="content" value="/pages/show_news_form.jsp"/>
         <put name="footer" value="/pages/layouts/footer.jsp"/>
         <put name="title" value="my.home.page"/>
     </definition>
@@ -16,7 +16,7 @@
     <definition name="my.edit.page" extends="my.home.page">
         <put name="header" value="/pages/layouts/header.jsp"/>
         <put name="sidebar" value="/pages/layouts/sidebar.jsp"/>
-        <put name="content" value="/pages/editNews.jsp"/>
+        <put name="content" value="/pages/edit_news_form.jsp"/>
         <put name="footer" value="/pages/layouts/footer.jsp"/>
         <put name="title" value="Edit Page"/>
     </definition>
@@ -25,7 +25,7 @@
     <definition name="my.create.page" extends="my.home.page">
         <put name="header" value="/pages/layouts/header.jsp"/>
         <put name="sidebar" value="/pages/layouts/sidebar.jsp"/>
-        <put name="content" value="/pages/addNews.jsp"/>
+        <put name="content" value="/pages/add_news_form.jsp"/>
         <put name="footer" value="/pages/layouts/footer.jsp"/>
         <put name="title" value="Create News Page"/>
     </definition>
