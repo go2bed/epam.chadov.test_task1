@@ -6,6 +6,7 @@ import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 public class NewsHibernateDao implements GenericDao<News> {
@@ -49,7 +50,9 @@ public class NewsHibernateDao implements GenericDao<News> {
         session = getCurrentSession();
         session.beginTransaction();
         try {
-            return (News) session.get(News.class, id);
+            News news = (News) session.get(News.class, id);
+            session.close();
+            return news;
         } catch (HibernateException | ClassCastException e) {
             logger.error("Can't get object by Id", e);
             throw new DaoException("Can't get object by Id", e);
@@ -78,10 +81,10 @@ public class NewsHibernateDao implements GenericDao<News> {
 
     @Override
     public boolean deleteNews(Integer id) {
+        News news = getById(id);
         session = getCurrentSession();
         Transaction transaction = session.beginTransaction();
         try {
-            News news = getById(id);
             session.delete(news);
             transaction.commit();
         } catch (HibernateException e) {
@@ -92,3 +95,4 @@ public class NewsHibernateDao implements GenericDao<News> {
         return true;
     }
 }
+
