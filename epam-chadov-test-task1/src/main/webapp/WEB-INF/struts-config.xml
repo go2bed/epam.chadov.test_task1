@@ -14,7 +14,6 @@
                 type="com.epam.chadov.task1.presentation.actions.NewsAction"
                 parameter="action"
                 name="showNewsForm"
-                validate="false"
         >
             <forward name="success" path="/main.jsp"/>
             <forward name="list_news" path="/index.jsp"/>

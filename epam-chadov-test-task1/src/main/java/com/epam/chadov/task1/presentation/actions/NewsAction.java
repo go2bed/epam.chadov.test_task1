@@ -70,7 +70,6 @@ public class NewsAction extends DispatchActionSupport {
     public ActionForward deleteList(ActionMapping mapping, ActionForm form,
                                     HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        ShowNewsForm showNewsForm = (ShowNewsForm) form;
         newsHibernateDao = getWebApplicationContext().getBean(NewsHibernateDao.class);
         String[] parameterValues = request.getParameterValues("checkbox");
         if (parameterValues != null) {
