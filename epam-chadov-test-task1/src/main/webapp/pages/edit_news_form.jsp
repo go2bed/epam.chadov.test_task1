@@ -12,14 +12,14 @@
 <div class="news-box">
     <div class="edit-form">
         <html:form action="/saveNews" method="post">
-            <html:errors/>
+            <div class="error"><html:errors/></div>
             <div class="field">
                 <label for="news_title"><bean:message key="news.edit.input.title"/> </label>
-                  <html:text styleId="news_title" property="title" value="${news.title}"/>
+                <html:text styleId="news_title" property="title" value="${news.title}"/>
             </div>
             <div class="field">
                 <label for="news_date"><bean:message key="news.edit.input.date"/> </label>
-                   <html:text styleId="news_date" property="newsDate" value="${news.newsDate}"/>
+                <html:text styleId="news_date" property="newsDate" value="${news.newsDate}"/>
             </div>
             <div class="field">
                 <label for="news_brief"><bean:message key="news.edit.input.brief"/></label>
@@ -32,7 +32,8 @@
             </div>
             <div class="button-area">
                 <input type="hidden" name="id" value="${news.id}">
-                <button type="submit" value="save" onclick="window.location = '/'" name="action"><bean:message key="news.button.save"/></button>
+                <button type="submit" value="save" onclick="window.location = '/'" name="action"><bean:message
+                        key="news.button.save"/></button>
                 <button type="button" onclick="window.location = '/'"><bean:message key="news.button.cancel"/></button>
             </div>
         </html:form>

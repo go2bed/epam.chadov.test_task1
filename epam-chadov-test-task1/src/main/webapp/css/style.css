@@ -31,8 +31,6 @@ body {
 }
 
 .error {
-    clear: both;
-    margin: 5px;
     text-align: center;
     color: red;
 }
