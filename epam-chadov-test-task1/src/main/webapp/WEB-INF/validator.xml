@@ -7,7 +7,7 @@
 <form-validation>
     <formset>
         <form name="showNewsForm">
-            <field property="title" depends="maxlength,minlength">
+            <field property="title" depends="maxlength,minlength,required">
                 <msg key="err.title.length" name="minlength"/>
                 <msg key="err.title.length" name="maxlength"/>
 
@@ -24,7 +24,7 @@
                 </var>
             </field>
 
-            <field property="brief" depends="maxlength">
+            <field property="brief" depends="maxlength, required">
                 <msg key="err.news.brief.length" name="maxlength"/>
 
                 <arg name="maxlength" key="${var:maxlength}" resource="false" position="0"/>
@@ -35,7 +35,7 @@
                 </var>
             </field>
 
-            <field property="content" depends="maxlength">
+            <field property="content" depends="maxlength, required">
                 <msg key="err.news.content.length" name="maxlength"/>
 
                 <arg name="maxlength" key="${maxlength}" resource="false" position="0"/>
@@ -45,8 +45,9 @@
                     <var-value>2048</var-value>
                 </var>
             </field>
-            <field property="newsDate" depends="date">
+            <field property="newsDate" depends="date, required">
                 <msg key="err.news.content.date" name="maxlength"/>
+                <msg key="err.news.content.date.required" name="required"/>
 
                 <arg name="date" key="${var:datePattern}" resource="false" position="0"/>
 

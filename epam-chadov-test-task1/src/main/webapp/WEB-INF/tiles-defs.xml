@@ -24,7 +24,7 @@
      <definition name="my.view_news.page" extends="my.home.page">
         <put name="header" value="/pages/layouts/header.jsp"/>
         <put name="sidebar" value="/pages/layouts/sidebar.jsp"/>
-        <put name="content" value="/pages/view_page.jsp"/>
+        <put name="content" value="/pages/view_news_form.jsp"/>
         <put name="footer" value="/pages/layouts/footer.jsp"/>
         <put name="title" value="Create News Page"/>
     </definition>

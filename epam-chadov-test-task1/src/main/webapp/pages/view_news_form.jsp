@@ -35,7 +35,6 @@
                 <button type="submit" value="deleteList" name="action"><bean:message
                         key="news.button.delete"/></button>
                 <input type="hidden" name="id" value="${news.id}">
-
             </div>
         </html:form>
     </div>

@@ -10,6 +10,7 @@ import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.struts.ActionSupport;
 import org.springframework.web.struts.DispatchActionSupport;
 
 
@@ -45,7 +46,7 @@ public class NewsAction extends DispatchActionSupport {
                                   HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         newsHibernateDao = getWebApplicationContext().getBean(NewsHibernateDao.class);
-        if (request.getParameter("id") == null) {
+        if (request.getParameter("id") == null ||request.getParameter("id").isEmpty()) {
             return mapping.findForward("edit_list");
         } else {
             Integer id = Integer.valueOf(request.getParameter("id"));
@@ -53,18 +54,6 @@ public class NewsAction extends DispatchActionSupport {
             request.setAttribute("news", news);
             return mapping.findForward("edit_list");
         }
-    }
-
-    public ActionForward save(ActionMapping mapping, ActionForm form,
-                              HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-        News news = newsFromForm((ShowNewsForm) form, request);
-        if (news == null) {
-            return mapping.findForward("failure");
-        }
-        newsHibernateDao = getWebApplicationContext().getBean(NewsHibernateDao.class);
-        newsHibernateDao.editSaveNews(news);
-        return mapping.findForward("list_news");
     }
 
     public ActionForward deleteList(ActionMapping mapping, ActionForm form,
@@ -92,28 +81,5 @@ public class NewsAction extends DispatchActionSupport {
         News news = newsHibernateDao.getById(id);
         request.setAttribute("news", news);
         return mapping.findForward("view_news");
-    }
-
-    private News newsFromForm(ShowNewsForm form, HttpServletRequest request) {
-        News news = new News();
-        String id = request.getParameter("id");
-        if (id != null && !id.isEmpty()) {
-            news.setId(id);
-        }
-        news.setTitle(form.getTitle());
-        news.setBrief(form.getBrief());
-        news.setContent(form.getContent());
-        String dateFromForm = form.getNewsDate();
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date date = format.parse(dateFromForm);
-            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-            news.setNewsDate(sqlDate);
-        } catch (ParseException e) {
-            logger.error("Can't parse date from newsForm", e);
-            throw new ActionException("Can't parse date from newsForm", e);
-        }
-        logger.info(news.toString());
-        return news;
     }
 }

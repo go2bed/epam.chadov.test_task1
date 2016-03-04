@@ -14,6 +14,7 @@
                 type="com.epam.chadov.task1.presentation.actions.NewsAction"
                 parameter="action"
                 name="showNewsForm"
+                validate="false"
         >
             <forward name="success" path="/main.jsp"/>
             <forward name="list_news" path="/index.jsp"/>
@@ -21,12 +22,23 @@
             <forward name="view_news" path="/pages/view_news_page.jsp"/>
         </action>
 
+         <action path="/saveNews"
+                type="com.epam.chadov.task1.presentation.actions.SaveAction"
+                parameter="action"
+                name="showNewsForm"
+                input="/pages/edit_page.jsp"
+                validate="true"
+        >
+             <forward name="failure" path="/pages/edit_page.jsp"/>
+            <forward name="success" path="/index.jsp"/>
+        </action>
+
+
         <action path="/Locale"
                 type="com.epam.chadov.task1.presentation.actions.SetLocale"
                 parameter="action"
-                name="showNewsForm"
         >
-            <forward name="success" path="/main.jsp"/>
+            <forward name="success" path="/index.jsp"/>
         </action>
     </action-mappings>
 
